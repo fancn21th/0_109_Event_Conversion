@@ -1,17 +1,12 @@
 {
-  "name": "vanilla_js_starter_kit",
+  "name": "event_conversion",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "gulp"
   },
-  "keywords": [
-    "vanilla js starter kit",
-    "gulp",
-    "gulp-inject",
-    "browser-sync"
-  ],
+  "keywords": [],
   "author": "Fan, Yi-Jie",
   "license": "MIT",
   "devDependencies": {
