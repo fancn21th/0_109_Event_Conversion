@@ -1,6 +1,30 @@
 var top = document.getElementById("top");
 var bottom = document.getElementById("bottom");
 
+var getEvent = function(event) {
+  return event ? event : window.event;
+};
+
+var getTarget = function(event) {
+  return event.target || event.srcElement;
+};
+
+var preventDefault = function(event) {
+  if (event.preventDefault) {
+    event.preventDefault();
+  } else {
+    event.returnValue = false;
+  }
+};
+
+var stopPropagation = function(event) {
+  if (event.stopPropagation) {
+    event.stopPropagation();
+  } else {
+    event.cancelBubble = true;
+  }
+};
+
 var simulateTouchEvent = function(eventType, e, element) {
   try {
     let touchEvent = new TouchEvent(eventType, {
@@ -21,39 +45,23 @@ var simulateTouchEvent = function(eventType, e, element) {
   }
 };
 
-top.addEventListener(
-  "mousedown",
-  function(e) {
-    e.stopPropagation();
-    console.log(e.target);
-  },
-  true
-);
+top.addEventListener("mousedown", function(e) {
+  stopPropagation(e);
+  console.log("mousedown", e.target);
+});
 
-top.addEventListener(
-  "touchstart",
-  function(e) {
-    e.stopPropagation();
-    console.log("touch start", e.target);
-    simulateTouchEvent("touchstart", e, bottom);
-  },
-  true
-);
+top.addEventListener("touchstart", function(e) {
+  stopPropagation(e);
+  console.log("touch start", e.target);
+  simulateTouchEvent("touchstart", e, bottom);
+});
 
-bottom.addEventListener(
-  "mousedown",
-  function(e) {
-    e.stopPropagation();
-    console.log(e.target);
-  },
-  true
-);
+bottom.addEventListener("mousedown", function(e) {
+  stopPropagation(e);
+  console.log("mousedown", e.target);
+});
 
-bottom.addEventListener(
-  "touchstart",
-  function(e) {
-    e.stopPropagation();
-    console.log("touch start", e.target);
-  },
-  true
-);
+bottom.addEventListener("touchstart", function(e) {
+  stopPropagation(e);
+  console.log("touch start", e.target);
+});
