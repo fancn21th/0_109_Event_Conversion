@@ -1,0 +1,23 @@
+{
+  "name": "vanilla_js_starter_kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "keywords": [
+    "vanilla js starter kit",
+    "gulp",
+    "gulp-inject",
+    "browser-sync"
+  ],
+  "author": "Fan, Yi-Jie",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-inject": "^5.0.4"
+  }
+}
