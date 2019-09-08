@@ -1,5 +1,5 @@
-var top = document.getElementById("top");
-var bottom = document.getElementById("bottom");
+var eleTop = document.getElementById("top");
+var eleBottom = document.getElementById("bottom");
 
 var simulateTouchEvent = function(eventType, e, element) {
   console.log(JSON.stringify(e));
@@ -22,23 +22,23 @@ var simulateTouchEvent = function(eventType, e, element) {
   }
 };
 
-top.addEventListener("mousedown", function(e) {
+eleTop.addEventListener("mousedown", function(e) {
   stopPropagation(e);
   printEvent(e);
 });
 
-top.addEventListener("touchstart", function(e) {
+eleBottom.addEventListener("mousedown", function(e) {
+  stopPropagation(e);
+  printEvent(e);
+});
+
+eleTop.addEventListener("touchstart", function(e) {
   stopPropagation(e);
   printEvent(e);
   simulateTouchEvent("touchstart", e, bottom);
 });
 
-bottom.addEventListener("mousedown", function(e) {
-  stopPropagation(e);
-  printEvent(e);
-});
-
-bottom.addEventListener("touchstart", function(e) {
+eleBottom.addEventListener("touchstart", function(e) {
   stopPropagation(e);
   printEvent(e);
 });
