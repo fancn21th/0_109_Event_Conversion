@@ -22,14 +22,17 @@ var stopPropagation = function(event) {
   }
 };
 
+var printToConsole = true;
+
 var printEvent = function(event) {
-  console.log(
-    "event type",
-    event.type,
-    " | ",
-    "pointer type",
-    event.pointerType,
-    "element",
-    getTarget(event)
-  );
+  if (printToConsole)
+    console.log(
+      "event type",
+      event.type,
+      " | ",
+      "pointer type",
+      event.pointerType,
+      "element",
+      getTarget(event)
+    );
 };
