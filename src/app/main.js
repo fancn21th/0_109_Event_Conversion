@@ -33,6 +33,13 @@ function log(s) {
   }
 }
 
+function checkPreventDefault(node) {
+  while (node && !node.handJobjs_forcePreventDefault) {
+    node = node.parentNode;
+  }
+  return !!node || window.handJobjs_forcePreventDefault;
+}
+
 function TouchListWrapper() {
   var touchList = []; // an array of W3C compliant Touch objects.
 
@@ -376,13 +383,13 @@ function generateTouchClonedEvent(
   targetTouchesWrapper = new TouchListWrapper();
 
   // mouse down events
-  eleTop.addEventListener("mousedown", function(e) {
-    stopPropagation(e);
-  });
+  // eleTop.addEventListener("mousedown", function(e) {
+  //   stopPropagation(e);
+  // });
 
-  eleBottom.addEventListener("mousedown", function(e) {
-    stopPropagation(e);
-  });
+  // eleBottom.addEventListener("mousedown", function(e) {
+  //   stopPropagation(e);
+  // });
 
   // touch start events
   // eleTop.addEventListener("touchstart", function(e) {
@@ -409,7 +416,7 @@ function generateTouchClonedEvent(
     if (ignorePointerEvent(eventObject)) {
       return;
     }
-    previousTargets[touchPoint.identifier] = touchPoint.target;
+    // previousTargets[touchPoint.identifier] = touchPoint.target;
     generateTouchEventProxyIfRegistered(
       "touchstart",
       touchPoint,
@@ -422,10 +429,10 @@ function generateTouchClonedEvent(
   // pointer move events
   eleTop.addEventListener("pointermove", function(eventObject) {
     stopPropagation(eventObject);
-    printEvent(eventObject);
 
     var touchPoint = eventObject,
-      currentTarget = previousTargets[touchPoint.identifier];
+      // currentTarget = previousTargets[touchPoint.identifier];
+      currentTarget = touchPoint.target;
 
     if (ignorePointerEvent(eventObject)) {
       return;
@@ -449,7 +456,7 @@ function generateTouchClonedEvent(
     generateTouchEventProxyIfRegistered(
       "touchmove",
       touchPoint,
-      currentTarget,
+      eleBottom,
       eventObject,
       true
     );
