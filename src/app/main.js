@@ -1,11 +1,11 @@
 var eleTop = document.getElementById("top");
 var eleBottom = document.getElementById("bottom");
-var previousTargets = {},
-  lastHwTimestamp = 0,
+var lastHwTimestamp = 0,
   logToConsole = true,
   touchesWrapper,
   changedTouchesWrapper,
   targetTouchesWrapper;
+//  previousTargets = {}
 
 var simulateTouchEvent = function(eventType, e, element) {
   try {
@@ -27,17 +27,8 @@ var simulateTouchEvent = function(eventType, e, element) {
   }
 };
 
-function log(s) {
-  if (logToConsole) {
-    console.log(s.toString());
-  }
-}
-
-function checkPreventDefault(node) {
-  while (node && !node.handJobjs_forcePreventDefault) {
-    node = node.parentNode;
-  }
-  return !!node || window.handJobjs_forcePreventDefault;
+function touchesAreAtSameSpot(touch0, touch1) {
+  return touch0.screenX === touch1.screenX && touch0.screenY === touch1.screenY;
 }
 
 function TouchListWrapper() {
@@ -134,6 +125,19 @@ function TouchListWrapper() {
   this.removeTouch = removeTouch;
   this.clearTouches = clearTouches;
   this.containsTouchAt = containsTouchAt;
+}
+
+function log(s) {
+  if (logToConsole) {
+    console.log(s.toString());
+  }
+}
+
+function checkPreventDefault(node) {
+  while (node && !node.handJobjs_forcePreventDefault) {
+    node = node.parentNode;
+  }
+  return !!node || window.handJobjs_forcePreventDefault;
 }
 
 function ignorePointerEvent(event) {
